@@ -8,9 +8,16 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
+import {Switch, Route, Link} from 'react-router-dom'
+
+import Nav1 from './views/Nav1/index'
+import Nav2 from './views/Nav2/index'
+import RouteChildren from './views/RouteChildren/index'
+
 import './App.css'
 
 const {Header, Sider, Content} = Layout;
+
 
 export default class App extends React.Component {
   state = {
@@ -30,13 +37,16 @@ export default class App extends React.Component {
             <div className="logo"/>
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
               <Menu.Item key="1" icon={<UserOutlined/>}>
-                nav 1
+                <Link to='/nav_1'>nav 1</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<VideoCameraOutlined/>}>
-                nav 2
+                <Link to='/nav_2'>nav 2</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<UploadOutlined/>}>
                 nav 3
+              </Menu.Item>
+              <Menu.Item key="4" icon={<UploadOutlined/>}>
+                <Link to='route_children'>Route.children</Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -55,7 +65,11 @@ export default class App extends React.Component {
                   minHeight: 280,
                 }}
             >
-              Content
+              <Switch>
+                <Route exact path='/nav_1' render={() => <Nav1/>}></Route>
+                <Route path='/nav_2' render={() => <Nav2/>}></Route>
+                <Route path='/route_children' render={() => <RouteChildren/>}></Route>
+              </Switch>
             </Content>
           </Layout>
         </Layout>
