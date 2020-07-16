@@ -22,4 +22,7 @@ yarn-error.log*
 .idea
 .vscode
 
+node_modules
+dist
+
 
